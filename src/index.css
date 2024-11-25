@@ -1,0 +1,47 @@
+body {
+  font-family: Georgia, serif;
+  background-color: #f8f8f8;
+  font-size: 14px;
+}
+
+#logo-image {
+  width: 30px;
+  margin-right: 10px;
+}
+
+/* Add your own custom styles here */
+.main {
+  display: flex;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+img {
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+
+ul {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 200px;
+}
+
+.bookdetails{
+  border: 1px solid rgb(204, 204, 204);
+  text-align: center;
+  display: block;
+  text-wrap-style: balance;
+}
