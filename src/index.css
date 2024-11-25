@@ -2,6 +2,8 @@ body {
   font-family: Georgia, serif;
   background-color: #f8f8f8;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 #logo-image {
@@ -25,7 +27,7 @@ img {
   margin-bottom: 10px;
 }
 
-
+/* Books Component CSS */
 ul {
   display: flex;
   flex-flow: wrap;
@@ -39,9 +41,46 @@ li {
   width: 200px;
 }
 
-.bookdetails{
+/* Single Book details component CSS */
+.bookdetails {
   border: 1px solid rgb(204, 204, 204);
   text-align: center;
   display: block;
   text-wrap-style: balance;
+}
+
+/* Navigations component CSS */
+
+.header {
+  display: flex;
+  align-items: center;
+  background: black;
+  width: 100%;
+  color: white;
+  padding: 10px;
+}
+.header h1{cursor: pointer;}
+.header li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+#nav-title {
+  margin-right: auto;
+  font-size: 1.5em;
+}
+
+.header a {
+  text-decoration: none;
+  color: #7DF074;
+  list-style: none;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.header a:hover {
+  color: #4CF0E9;
 }
