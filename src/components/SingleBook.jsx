@@ -6,13 +6,11 @@ import { useParams } from "react-router-dom";
 
 export default function SingleBook() {
     const { id } = useParams();
-    console.log("Book ID from URL:", id);
     const [book, setBook] = useState(null)
 
     useEffect(() => {
         async function fetchPlayer() {
             try {
-                console.log(`Fetching from: https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`);
                 const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`)
                 const result = await response.json();
                 setBook(result.book)

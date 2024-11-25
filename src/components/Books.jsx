@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 export default function Books() {
-    const [books, setBooks] = useState([])
-    const navigate = useNavigate()
+    const [books, setBooks] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         async function fetchBooks() {
             try {
@@ -11,7 +11,7 @@ export default function Books() {
                 const result = await response.json();
                 setBooks(result.books)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
         fetchBooks();
@@ -21,7 +21,6 @@ export default function Books() {
         <>
             <h1>All Books</h1>
             <div className='main'>
-
                 {
                     books.length > 0 ? (
                         <ul>
