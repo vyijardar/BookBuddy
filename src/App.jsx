@@ -8,20 +8,19 @@ import Account from './components/Account'
 import Navigations from './components/Navigations'
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [Profile, setProfile] = useState('');
+const [token,setToken] = useState("");
   return (
-    <>
-      <Navigations />
-      <Routes>
-        <Route path='/books' element={<Books />}></Route>
-        <Route path='/:id' element={<SingleBook />}></Route>
-        <Route path='/login'  element={<Login Profile={Profile} setProfile={setProfile}/>}></Route>
-        <Route path='/register' element={<Register token={token} setToken={setToken} />}></Route>
-        <Route path='/account' element={<Account />}></Route> 
-      </Routes>
-     
-    </>
+      <>
+        <Navigations />
+        <Routes>
+          <Route path='/books' element={<Books />}></Route>
+          <Route path='/:id' element={<SingleBook />}></Route>
+          <Route path='/login' element={<Login  token={token} setToken={setToken}/>}></Route>
+          <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
+          <Route path='/account' element={<Account token={token} setToken={setToken} />}></Route>
+        </Routes>
+
+      </>
   )
 }
 
