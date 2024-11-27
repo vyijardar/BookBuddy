@@ -1,39 +1,52 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function Register() {
 
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+export default function Register({ setToken }) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const [error, setError] = useState([]);
 
     const navigate = useNavigate()
+
     async function handleSubmit(event) {
         event.preventDefault();
-        try {
-            const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register", {
-                method: "POST",
-                headers: { "Content-Type": "Application/json" },
-                body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password,
 
+        async function Registration() {
+            try {
+                const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'Application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        password
+                    })
                 })
-            });
-            if (!response.ok) throw new Error("Login failed");
-            const result = await response.json();
-            console.log(result)
-           
+                const result = await response.json();
+                console.log(result)
+  
+                if (result.token) {
+                    setToken(result.token); // Store the token
+                    console.log('Login successful, token stored:', result.token);
+                    localStorage.setItem('token', result.token);
+                } else {
+                    throw new Error("Failed to sign up, no token received");
+                }
+                alert("Registered Successfully");
+                navigate(`/account`);
+            } catch (error) {
+                setError(error.message)
+            }
 
-        } catch (err) {
-            setError(err.message);
         }
-        alert("Registered Successfully");
-        navigate(`/login`);
+        Registration();
     }
     return (
         <div>
