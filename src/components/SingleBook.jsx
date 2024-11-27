@@ -1,13 +1,12 @@
 /* TODO - add your code to create a functional React component that renders details for a single book. Fetch the book data from the provided API. You may consider conditionally rendering a 'Checkout' button for logged in users. */
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useParams ,useNavigate} from "react-router-dom";
 
 export default function SingleBook() {
     const { id } = useParams();
-    const [book, setBook] = useState(null)
-
+    const [book, setBook] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         async function fetchPlayer() {
             try {
@@ -17,9 +16,8 @@ export default function SingleBook() {
             } catch (error) {
                 console.log(error)
             }
-
         }
-        fetchPlayer()
+        fetchPlayer();
     }, [id])
     if (!book) return <p>Loading player details...</p>;
 
@@ -29,6 +27,7 @@ export default function SingleBook() {
             <img src={book.coverimage} alt={`Cover of ${book.title}`} style={{ width: "200px", height: "300px" }} />
             <h2>{book.author}</h2>
             <p>{book.description}</p>
+            <button onClick={() => navigate('/books')}>Back to All Books</button>
         </div>
     );
 }
