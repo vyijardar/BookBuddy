@@ -1,33 +1,40 @@
 /* TODO - add your code to create a functional React component that renders a login form */
-import { useState, useContext} from "react";
-import { UserContext } from '../context/UserContext';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function Login() {
+export default function Login({setToken}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("");
-    const { login } = useContext(UserContext);
     const navigate = useNavigate();
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setError('');
         try {
             const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login", {
                 method: "POST",
-                headers: { "Content-Type": "Application/json" },
+                headers: {
+                    "Content-Type": "Application/json",
+                },
                 body: JSON.stringify({
-                    email: email,
-                    password: password
+                    email, password
                 })
             });
             const result = await response.json();
             console.log(result)
-            login(result.token)
+            if (result.token) {
+                setToken(result.token); // Store the token
+                localStorage.setItem('token', result.token);
+                console.log('Login successful, token stored:', result.token);
+                
+            } else {
+                throw new Error("Failed to sign up, no token received");
+            }
+            navigate('/account');
+       
         } catch (error) {
             setError(error.message);
         }
-        navigate("/books");
+
     }
     return (
         <>
