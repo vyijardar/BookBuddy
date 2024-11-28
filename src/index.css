@@ -13,7 +13,11 @@ body {
 
 /* Add your own custom styles here */
 .main {
-  display: flex;
+  display: inline-block;
+}
+
+.searchbar {
+  text-align: center;
 }
 
 h1,
@@ -57,9 +61,13 @@ li {
   background: black;
   width: 100%;
   color: white;
-  padding: 10px;
 }
-.header h1{cursor: pointer;}
+
+.home h1 {
+  cursor: pointer;
+  color: #000;
+}
+
 .header li {
   list-style: none;
   display: inline-block;
@@ -83,4 +91,135 @@ li {
 
 .header a:hover {
   color: #4CF0E9;
+}
+
+.error {
+  color: red;
+}
+
+.login{
+  text-align: center;
+  margin:0 auto;
+  max-width:500px;
+}
+.register{
+  text-align: center;
+  margin:0 auto;
+  max-width:500px;
+}
+.login-header {
+  color:#221e1e;
+  text-align:center;
+  font-size:200%;
+}
+.register-header {
+  color:#221e1e;
+  text-align:center;
+  font-size:200%;
+}
+/* .container{
+  background:url('http://cdn.wallpapersafari.com/13/6/Mpsg2b.jpg');
+} */
+.login-form {
+  border:.5px solid #fff;
+  background:#4facff;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.register-form {
+  border:.5px solid #fff;
+  background:#4facff;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.login-form  h3 {
+  text-align:left;
+  margin-left:40px;
+  color:#fff;
+}
+.register-form h3 {
+  text-align:left;
+  margin-left:40px;
+  color:#fff;
+}
+.login-form  {
+  box-sizing:border-box;
+  padding-top:15px;
+  padding-bottom:10%;
+  margin:5% auto;
+  text-align:center;
+}
+.register-form {
+  box-sizing:border-box;
+  padding-top:15px;
+  padding-bottom:10%;
+  margin:5% auto;
+  text-align:center;
+}
+.register input[type="email"],
+.register input[type="text"],
+.register input[type="password"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.login input[type="email"],
+.login input[type="password"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.login-form button{
+  height:30px;
+  width:100px;
+  background:#fff;
+  border:1px solid #f2f2f2;
+  border-radius:20px;
+  color: slategrey;
+  text-transform:uppercase;
+  font-family: 'Ubuntu', sans-serif;
+  cursor:pointer;
+}
+.register-form button{
+  height:30px;
+  width:100px;
+  background:#fff;
+  border:1px solid #f2f2f2;
+  border-radius:20px;
+  color: slategrey;
+  text-transform:uppercase;
+  font-family: 'Ubuntu', sans-serif;
+  cursor:pointer;
+}
+.login error{
+  color:#f2f2f2;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.register error{
+  color:#f2f2f2;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.link-login,
+.link-register {
+  margin: 20px 0 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.account{
+  text-align: center;
 }

@@ -32,7 +32,7 @@ export default function Account({ token }) {
 
 
     return (
-        <div>
+        <div className="account">
             {accountInfo && (
                 <>
                     <p><strong>Email:</strong> {accountInfo.email}</p>
