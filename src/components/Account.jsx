@@ -17,13 +17,11 @@ export default function Account({ token }) {
                     headers:
                     {
                         "Content-Type": "Application/json",
-                        Authorization: `Bearer ${token}`,
+                         Authorization: `Bearer ${token}`,
                     }
                 })
 
                 const result = await response.json();
-                // console.log(result);
-                // console.log('Retrieved token:', token);
                 setAccountInfo(result);
 
             } catch (error) {
@@ -41,7 +39,6 @@ export default function Account({ token }) {
                 });
 
                 const data = await response.json();
-                // console.log('Checked-Out Books:', data);
                 setCheckedOutBooks(data.reservation);
 
             } catch (error) {
@@ -50,7 +47,6 @@ export default function Account({ token }) {
         }
         fetchCheckOutBooks();
         fetchAccountInfo();
-        return () => { };
     }, [token])
     async function handleReturn(reservationId) {
         try {
