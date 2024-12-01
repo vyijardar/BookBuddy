@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Register({ setToken }) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,14 +14,14 @@ export default function Register({ setToken }) {
 
     function validateForm() {
         const error = []
-        if (!firstName.trim()) {
-            error.firstName = "First Name is required.";
+        if (!firstname.trim()) {
+            error.firstname = "First Name is required.";
         }
-        if (!lastName.trim()) {
-            error.lastName = "Last Name is required.";
+        if (!lastname.trim()) {
+            error.lastname = "Last Name is required.";
         }
         if (!email.trim()) {
-            error.lastName = "Last Name is required.";
+            error.email = "Email address is required.";
         } else if (!/\S+@\S+\.\S+/.test(email)) {
             error.email = "Invalid  email address";
         }
@@ -52,10 +52,10 @@ export default function Register({ setToken }) {
                         'Content-Type': 'Application/json'
                     },
                     body: JSON.stringify({
-                        firstName,
-                        lastName,
-                        email,
-                        password
+                        firstname : firstname,
+                        lastname :lastname,
+                        email : email,
+                        password: password
                     })
                 })
                 const result = await response.json();
@@ -85,23 +85,23 @@ export default function Register({ setToken }) {
                     <div className="register-form">
                         <h3>First Name : </h3>
                         <input type="text"
-                            name="firstName"
-                            value={firstName}
-                            onChange={(event) => setFirstName(event.target.value)}
+                            name="firstname"
+                            value={firstname}
+                            onChange={(event) => setFirstname(event.target.value)}
                             placeholder="First Name">
                         </input>
 
-                        {error.firstName && <p className="error">{error.firstName}</p>}
+                        {error.firstname && <p className="error">{error.firstname}</p>}
 
                         <h3> Last Name :</h3>
                         <input type="text"
-                            name="lastName"
-                            value={lastName}
-                            onChange={(event) => setLastName(event.target.value)}
+                            name="lastname"
+                            value={lastname}
+                            onChange={(event) => setLastname(event.target.value)}
                             placeholder="Last Name">
                         </input>
 
-                        {error.lastName && <p className="error">{error.lastName}</p>}
+                        {error.lastname && <p className="error">{error.lastname}</p>}
 
                         <h3>Email :</h3>
                         <input type="email"

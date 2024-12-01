@@ -9,26 +9,25 @@ export default function Navigations({ token, setToken, setisLoggedIn }) {
         navigate('/login');
     }
     return (
-        <>
+        <div className="header">
+            <img id='logo-image' src={bookLogo} />
+            <h1 id='nav-title' onClick={() => navigate("/")}>BookBuddy Library App</h1>
             {token ?
-                (<div className="header">
-                    <img id='logo-image' src={bookLogo} />
-                    <h1 id='nav-title' onClick={() => navigate("/books")}>BookBuddy Library App</h1>
+                (
                     <nav className="navbar">
                         <Link to="/books">Books</Link>
                         <Link to="/account">Account</Link>
                         <a onClick={logout}>Logout</a>
                     </nav>
-                </div>) :
-                (<div className="header">
-                    <img id='logo-image' src={bookLogo} />
-                    <h1 id='nav-title' onClick={() => navigate("/books")}>BookBuddy Library App</h1>
+                ) :
+                (
                     <nav className="navbar">
                         <Link to="/books">Books</Link>
                         <Link to="/register">Registration</Link>
+                        <Link to="/login">Login</Link>
                     </nav>
-                </div >)}
-
-        </>
+                )
+            }
+        </div>
     );
 }
