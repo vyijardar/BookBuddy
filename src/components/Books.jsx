@@ -1,11 +1,10 @@
 /* TODO - add your code to create a functional React component that displays all of the available books in the library's catalog. Fetch the book data from the provided API. Users should be able to click on an individual book to navigate to the SingleBook component and view its details. */
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-export default function Books() {
+export default function Books({ token }) {
     const [books, setBooks] = useState([]); // All books fetched from the API
     const [search, setSearch] = useState(''); // User input for searching
     const [filteredBooks, setFilteredBooks] = useState([]); // Books matching the search term
-
     const navigate = useNavigate();
 
     // Fetch books when the component mounts
@@ -41,6 +40,41 @@ export default function Books() {
         );
         setFilteredBooks(results);
     }
+
+
+    async function handleCheckout(bookId) {
+        if (!token) {
+            return alert("Please Login to checkout books.");
+        }
+
+        try {
+            const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${bookId}`, {
+                method: "PATCH",
+                headers:
+                {
+                    "Content-Type": "Application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body:JSON.stringify({available: false})
+            });
+        
+            if (response.ok) {
+                alert('Book checked out successfully!');
+                // Optionally refetch books to update availability
+                const updatedBooks = books.map((book) =>
+                    book.id === bookId ? { ...book, available: false } : book
+                );
+                console.log(updatedBooks);
+                setBooks(updatedBooks);
+            } else {
+                alert('Failed to check out book.');
+            }
+        } catch (error) {
+            console.error('Error checking out book:', error);
+        }
+
+    }
+
     return (
         <div className='main'>
             <h1>All Books</h1>
@@ -66,6 +100,11 @@ export default function Books() {
                                             <h2>{book.author}</h2>
                                             <p>{book.description}</p>
                                             <p>{book.available}</p>
+                                            {
+                                                book.available === true && token && (
+                                                    <button type="submit" onClick={() => handleCheckout(book.id)} >Checkout Book</button>
+                                                )}
+
                                         </li>
 
                                     ))
