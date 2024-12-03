@@ -2,38 +2,38 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({ setToken, setIsLoggedin }) {
+export default function Login({ setToken }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    // function validateForm() {
-    //     const error = []
+    function validateForm() {
+        const error = []
 
-    //     // if (!email.trim()) {
-    //     //     error.lastName = "Last Name is required.";
-    //     // } else if (!/\S+@\S+\.\S+/.test(email)) {
-    //     //     error.email = "Invalid  email address";
-    //     // }
-    //     // // Password validation
-    //     // if (password.length < 8) {
-    //     //     error.password = "Password must be at least 8 characters long.";
-    //     // } else if (!password.match(/[!@#$%^&*(),.?":{}|<>]/)) {
-    //     //     error.password = "Password must contain at least one special character.";
-    //     // }
+        if (!email.trim()) {
+            error.email = "Email is required.";
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            error.email = "Invalid  email address";
+        }
+        // Password validation
+        if (!password.trim()) {
+            error.password = "Password is required.";
+        } else if (password.length < 4) {
+            error.password = "Password must be at least 8 characters long.";
+        }
 
-    //     return error
-    // }
+        return error
+    }
     async function handleSubmit(event) {
         event.preventDefault();
         // Run validation
-        // const validationErrors = validateForm();
-        // if (Object.keys(validationErrors).length > 0) {
-        //     setError(validationErrors);
-        //     return;
-        // }
-        // setError([]);
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setError(validationErrors);
+            return;
+        }
+        setError([]);
 
         try {
             const response = await fetch("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login", {
@@ -46,11 +46,9 @@ export default function Login({ setToken, setIsLoggedin }) {
                 })
             });
             const result = await response.json();
-            console.log(result)
             if (result.token) {
                 setToken(result.token); // Store the token
                 localStorage.setItem('token', result.token);
-                console.log('Login successful, token stored:', result.token);
                 alert("Logged in successfully");
                 navigate('/account')
             } else {
@@ -89,7 +87,9 @@ export default function Login({ setToken, setIsLoggedin }) {
                             placeholder="Password">
                         </input>
                         {error.password && <p className="error">{error.password}</p>}
-                        <button type="submit">Submit</button>
+                        <div className="actions">
+                            <button className="btn" type="submit">Submit</button>
+                        </div>
                         <div onClick={() => { navigate(`/register`); }} className="link-register" >
                             You don't have an account? Register Here!
                         </div>
@@ -98,7 +98,7 @@ export default function Login({ setToken, setIsLoggedin }) {
                     {error && <p className="error">{error}</p>}
 
                 </form>
-               
+
             </div>
         </div>
     );

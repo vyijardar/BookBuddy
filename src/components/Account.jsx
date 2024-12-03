@@ -17,7 +17,7 @@ export default function Account({ token }) {
                     headers:
                     {
                         "Content-Type": "Application/json",
-                         Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                     }
                 })
 
@@ -47,6 +47,7 @@ export default function Account({ token }) {
         }
         fetchCheckOutBooks();
         fetchAccountInfo();
+        return () => { };
     }, [token])
     async function handleReturn(reservationId) {
         try {
@@ -71,31 +72,41 @@ export default function Account({ token }) {
         return <p>You need to login to view your account.</p>
     }
     return (
-        <div className="account">
-            {accountInfo && (
-                <>
-                    <p><strong>Email:</strong> {accountInfo.email}</p>
-                    <p><strong>Name:</strong> {accountInfo.firstname} {accountInfo.lastname}</p>
-                    <h2>Checked-Out Books</h2>
+        <div id="account">
+            <div className='books-list'>
+                {accountInfo && (
+                    <div className="account-info">
+                        <p><strong>Email Id:</strong> {accountInfo.email} </p>       
+                        <h1>Checked-Out Books</h1>
+                    </div>
+                )}
+                {checkedOutBooks && checkedOutBooks.length > 0 ? (
+                    <ul>
+                        {checkedOutBooks.map((reservation) => (
+                            <li key={reservation.id}>
 
-                </>
-            )}
-            {checkedOutBooks && checkedOutBooks.length > 0 ? (
-                <ul>
-                    {checkedOutBooks.map((reservation) => (
-                        <li key={reservation.id} style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
-                            <h3>{reservation.title}</h3>
-                            <img src={reservation.coverimage} alt={`Cover of ${reservation.title}`} style={{ width: "200px", height: "300px" }} onClick={() => navigate(`/${book.id}`)} />
-                            <h2>{reservation.author}</h2>
-                            <p>{reservation.description}</p>
-                            <p>{reservation.available}</p>
-                            <button type="submit" onClick={() => handleReturn(reservation.id)} >Return Book</button>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>You have 0 books checked out.</p>
-            )}
+                                <figure>
+                                    <img src={reservation.coverimage} alt={`Cover of ${reservation.title}`} onClick={() => navigate(`/${book.id}`)} />
+                                    <figcaption>
+                                        <header>
+                                            <h4><a href="#" onClick={() => navigate(`/${book.id}`)}>{reservation.title}</a> </h4>
+                                            <p><strong>Author : </strong> {reservation.author}</p>
+                                        </header>
+
+                                        <p className="description">{reservation.description}</p>
+                                        <div className='actions'>
+                                        <button className="btn" type="submit" onClick={() => handleReturn(reservation.id)} >Return Book</button>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>You have 0 books checked out.</p>
+                )}
+            </div>
         </div>
     );
 }

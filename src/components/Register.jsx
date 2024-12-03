@@ -52,24 +52,22 @@ export default function Register({ setToken }) {
                         'Content-Type': 'Application/json'
                     },
                     body: JSON.stringify({
-                        firstname : firstname,
-                        lastname :lastname,
-                        email : email,
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
                         password: password
                     })
                 })
                 const result = await response.json();
-                console.log(result)
 
                 if (result.token) {
                     setToken(result.token); // Store the token
-                    console.log('Login successful, token stored:', result.token);
                     localStorage.setItem('token', result.token);
                 } else {
                     throw new Error("Failed to sign up, no token received");
                 }
                 alert("Registered Successfully");
-                
+
             } catch (error) {
                 setError(error.message)
             }
@@ -120,7 +118,9 @@ export default function Register({ setToken }) {
                             onChange={(event) => setPassword(event.target.value)}
                             placeholder="Password">
                         </input>
-                        <button type="submit">Submit</button>
+                        <div className="actions">
+                            <button className="btn" type="submit">Submit</button>
+                        </div>
                         <div onClick={() => { navigate(`/login`); }} className="link-login" >
                             You already have an account? Login Here!
                         </div>

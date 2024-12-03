@@ -1,22 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&family=Sacramento&display=swap");
+
 body {
-  font-family: Georgia, serif;
-  background-color: #f8f8f8;
+  font-family: "Lato", Georgia, Times, serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #6D695C;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAACVBMVEUAAAAAAAAAAACDY+nAAAAAA3RSTlMmDQBzGIDBAAAAG0lEQVR42uXIIQEAAADCMHj/0NdkQMws0HEeAqvwAUGJthrXAAAAAElFTkSuQmCC);
+  color: #fff;
+  line-height: 1.6;
 }
 
-#logo-image {
-  width: 30px;
-  margin-right: 10px;
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+figure {
+  margin: 1em 40px;
+  margin: 0;
+}
+h4{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+
 }
 
 /* Add your own custom styles here */
-.main {
-  display: inline-block;
-}
 
-.searchbar {
+.search-filters {
   text-align: center;
 }
 
@@ -25,42 +41,309 @@ h2,
 h3 {
   text-align: center;
 }
-
-img {
-  border-radius: 5px;
-  margin-bottom: 10px;
+/* Books Component CSS */
+p {
+  font-size: 16px;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+#main{
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 80%;
+}
+.books-list img {
+  width: 100%;
 }
 
-/* Books Component CSS */
-ul {
+.books-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-flow: wrap;
-  justify-content: center;
+  justify-content: center; 
 }
-
-li {
+.books-list ul li{
+  border: 5px solid #f3f3f3;
   display: flex;
-  flex-direction: column;
-  margin: 10px;
-  width: 200px;
+  position: relative;
+  vertical-align: top;
+  width: 31.5%;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .books-list ul li {
+    margin: 0 15px 30px 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .books-list ul li {
+    margin: 0 2% 30px 0;
+    width: 48.7%;
+  }
+}
+@media (max-width: 767px) {
+  .books-list ul li {
+    margin: 0 0 30px 0;
+    width: 100%;
+  }
+}
+.books-list ul li figure{
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  padding: 10px;
 }
 
-/* Single Book details component CSS */
-.bookdetails {
-  border: 1px solid rgb(204, 204, 204);
-  text-align: center;
-  display: block;
-  text-wrap-style: balance;
+.books-list ul li figure img{
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
 }
+.books-list img {
+  height: 550px;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 5px;
+}
+
+.books-list ul li figure figcaption{
+  background-color: #fff;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  padding: 10px;
+  bottom: 0;
+  max-width: 100%;
+  z-index: 15;
+  height: 300px;
+  overflow-y: scroll;
+  transform: translate3d(0px, 59%, 0px);
+  transition: transform 0.35s ease 0s;
+
+}
+@media (max-width: 1199px) {
+  .books-list ul li figure figcaption {
+    background-color: #f4f4f4;
+    position: relative;
+    height: auto;
+    transform: none;
+  }
+}
+.books-list ul li figure figcaption header{
+  margin-bottom: 25px;
+}
+.books-list ul li figure figcaption h4{
+font-size: 20px;
+text-align: center;
+}
+.books-list ul li figure figcaption h4 a{
+  color: #282828;
+}
+.books-list ul li figure figcaption h4 a:hover{
+  color: #f5f2f0;
+}
+.books-list ul li figure figcaption p{
+  color: #282828;
+  font-size: 16px;
+  line-height: 1.42857;
+  margin: 0 0 10px;
+  text-align: center;
+ 
+}
+.books-list ul li figure figcaption .description{
+  color: #282828;
+  font-size: 14px;
+  line-height: 1.42857;
+  margin: 0 0 10px;
+  white-space: wrap;
+  text-align: justify;
+  padding: 0 5px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .books-list ul li:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .books-list ul li:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+.books-list ul li:hover {
+  -webkit-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+}
+.books-list ul li:hover img {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.books-list ul li:hover figcaption {
+  background-color: rgba(233, 168, 72, 0.9);
+  -webkit-transform: translate3d(0px, 0, 0px);
+  -moz-transform: translate3d(0px, 0, 0px);
+  -o-transform: translate3d(0px, 0, 0px);
+  -ms-transform: translate3d(0px, 0, 0px);
+  transform: translate3d(0px, 0, 0px);
+}
+
+.available{
+  text-align: center;
+  z-index: 1;
+  background-color: rgba(233, 168, 72, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+/* Search Filter CSS */
+
+.search-filters form {
+  margin: 1em auto;
+  padding: 0 1em;
+}
+.search-filters{
+  overflow: hidden;
+}
+
+.search-filters input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+.search-filters button{
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-filters .search-container button:hover {
+  background: #ccc;
+}
+
+/* Button CSS */
+.actions{
+  text-align: center;
+}
+.actions .btn{
+  color: #282828;
+  background-color: #fff;
+  margin: 5px;
+  padding: 10px 28px 11px;
+  border: 2px solid black;
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 50%;
+}
+
+.actions .btn:hover {
+  background-color: rgb(5, 5, 5);
+  border-color: rgb(5, 5, 5);
+  color: rgb(233, 168, 72);
+}
+/* Book details component CSS */
+#book-details {
+  display: flex;
+  margin:auto;
+  max-width: 80%;
+  padding: 0;
+  margin-top: 20px;;
+  margin-bottom: 40px;
+  background-color: #f3f3f3;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.41);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.41);
+}
+#book-details .book-image{
+  display: flex;
+}
+#book-details .book-description{
+  text-align: left;
+}
+.book-description{
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  margin: 0 -15px;
+  padding: 34px 15px 0 30px;
+}
+#book-details p{
+  color: #2f2f2f;
+  font-size: 16px;
+  line-height: 30px;
+  
+}
+.book-image img{
+  width: 320px;
+  height: 540px;
+}
+.book-description p{
+  color: #6b6b6b;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+.book-description h1{
+  color: #282828;
+  text-align: left;
+  text-transform: uppercase;
+}
+
 
 /* Navigations component CSS */
 
-.header {
+#header .container{
+  background-color:rgb(233, 168, 72) ;
+  font-size: 1.2rem;
+  font-family: "Merriweather Sans", sans-serif;
+  height: 70px;
+}
+.navbar {
   display: flex;
   align-items: center;
-  background: black;
-  width: 100%;
-  color: white;
+  justify-content: center;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+}
+.container .navbar {
+  justify-content: space-between;
+}
+.navbar ul {
+  display: flex;
+}
+.navbar ul li {
+  list-style-type: none;
+}
+
+.container .navbar ul li {
+  padding: 10px;
+  margin: 0 10px;
+}
+.navbar a {
+  display: flex;
+  color: #fff;
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: #292525;
 }
 
 .home h1 {
@@ -68,158 +351,124 @@ li {
   color: #000;
 }
 
-.header li {
-  list-style: none;
-  display: inline-block;
-  padding: 0 20px;
-}
-
 #nav-title {
-  margin-right: auto;
-  font-size: 1.5em;
+  font-size: 23px;
+  color: #FFF;
+  cursor: pointer;
 }
 
-.header a {
-  text-decoration: none;
-  color: #7DF074;
-  list-style: none;
-  display: inline-block;
-  padding: 0 20px;
-  font-size: large;
-  font-weight: bolder;
+#logo-image {
+  width: 30px;
 }
 
-.header a:hover {
-  color: #4CF0E9;
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .container {
+    height: 100%;
+  }
+
+  .container .navbar {
+    flex-direction: column;
+  }
 }
 
 .error {
   color: red;
 }
-
-.login{
-  text-align: center;
-  margin:0 auto;
-  max-width:500px;
-}
+/* Login component css */
+.login,
 .register{
   text-align: center;
   margin:0 auto;
   max-width:500px;
 }
-.login-header {
-  color:#221e1e;
-  text-align:center;
-  font-size:200%;
-}
-.register-header {
-  color:#221e1e;
-  text-align:center;
-  font-size:200%;
-}
-/* .container{
-  background:url('http://cdn.wallpapersafari.com/13/6/Mpsg2b.jpg');
-} */
-.login-form {
-  border:.5px solid #fff;
-  background:#4facff;
-  border-radius:10px;
-  box-shadow:0px 0px 10px #000;
-}
-.register-form {
-  border:.5px solid #fff;
-  background:#4facff;
-  border-radius:10px;
-  box-shadow:0px 0px 10px #000;
-}
-.login-form  h3 {
-  text-align:left;
-  margin-left:40px;
+
+.login-header,
+.register-header  {
   color:#fff;
+  text-align:center;
+  font-size:200%;
 }
+
+.login-form ,
+.register-form{
+  border:.5px solid #fff;
+  background:#e9a848;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+
+.login-form  h3,
 .register-form h3 {
   text-align:left;
   margin-left:40px;
   color:#fff;
 }
-.login-form  {
+
+.login-form,
+.register-form  {
   box-sizing:border-box;
   padding-top:15px;
   padding-bottom:10%;
-  margin:5% auto;
+  margin: 5% auto;
   text-align:center;
 }
-.register-form {
-  box-sizing:border-box;
-  padding-top:15px;
-  padding-bottom:10%;
-  margin:5% auto;
-  text-align:center;
-}
+
 .register input[type="email"],
 .register input[type="text"],
-.register input[type="password"] {
-  max-width:400px;
-  width: 80%;
-  line-height:3em;
-  font-family: 'Ubuntu', sans-serif;
-  margin:1em 2em;
-  border-radius:5px;
-  border:2px solid #f2f2f2;
-  outline:none;
-  padding-left:10px;
-}
+.register input[type="password"],
 .login input[type="email"],
 .login input[type="password"] {
   max-width:400px;
   width: 80%;
   line-height:3em;
-  font-family: 'Ubuntu', sans-serif;
   margin:1em 2em;
   border-radius:5px;
   border:2px solid #f2f2f2;
   outline:none;
   padding-left:10px;
 }
-.login-form button{
-  height:30px;
-  width:100px;
-  background:#fff;
-  border:1px solid #f2f2f2;
-  border-radius:20px;
-  color: slategrey;
-  text-transform:uppercase;
-  font-family: 'Ubuntu', sans-serif;
-  cursor:pointer;
-}
+
+.login-form button,
 .register-form button{
-  height:30px;
   width:100px;
   background:#fff;
   border:1px solid #f2f2f2;
-  border-radius:20px;
   color: slategrey;
   text-transform:uppercase;
-  font-family: 'Ubuntu', sans-serif;
   cursor:pointer;
 }
-.login error{
-  color:#f2f2f2;
-  text-decoration:underline;
-  cursor:pointer;
-}
+
+.login error,
 .register error{
   color:#f2f2f2;
   text-decoration:underline;
   cursor:pointer;
 }
+
 .link-login,
 .link-register {
   margin: 20px 0 0;
   text-align: center;
   cursor: pointer;
 }
-
+.link-login:hover,
+.link-register:hover{
+  color: #000;
+}
+/* Account component CSS */
+#account{
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 80%;
+}
 .account{
   text-align: center;
+}
+.account-info{
+  text-align: center;
+}
+.account-info p{
+  font-size: 20px;
 }

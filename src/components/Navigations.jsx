@@ -8,26 +8,36 @@ export default function Navigations({ token, setToken, setisLoggedIn }) {
         setToken(null);
         navigate('/login');
     }
+
     return (
-        <div className="header">
-            <img id='logo-image' src={bookLogo} />
-            <h1 id='nav-title' onClick={() => navigate("/")}>BookBuddy Library App</h1>
-            {token ?
-                (
-                    <nav className="navbar">
-                        <Link to="/books">Books</Link>
-                        <Link to="/account">Account</Link>
-                        <a onClick={logout}>Logout</a>
-                    </nav>
-                ) :
-                (
-                    <nav className="navbar">
-                        <Link to="/books">Books</Link>
-                        <Link to="/register">Registration</Link>
-                        <Link to="/login">Login</Link>
-                    </nav>
-                )
-            }
-        </div>
+        <>
+            <div id="header">
+                <div class="container">
+                    <div className="navbar">
+                        <h1 id='nav-title' onClick={() => navigate("/")}><img id='logo-image' src={bookLogo} style={{width:"100",height:"100"}} /> BookBuddy Library App</h1>
+                        {token ?
+                            (
+                                <nav>
+                                    <ul>
+                                        <li><Link to="/books"><span className="material-icons">auto_stories</span>Books</Link></li>
+                                        <li><Link to="/account"><span className="material-icons">account_circle</span>Account</Link></li>
+                                        <li><a onClick={logout}><span className="material-icons">logout</span>Logout</a></li>
+                                    </ul>
+                                </nav>
+                            ) :
+                            (
+                                <nav>
+                                    <ul>
+                                        <li><Link to="/books"><span className="material-icons">auto_stories</span>Books</Link></li>
+                                        <li><Link to="/register"><span className="material-icons">app_registration</span>Registration</Link></li>
+                                        <li><Link to="/login"><span className="material-icons">login</span>Login</Link></li>
+                                    </ul>
+                                </nav>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
