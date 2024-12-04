@@ -31,11 +31,6 @@ h4{
 }
 
 /* Add your own custom styles here */
-
-.search-filters {
-  text-align: center;
-}
-
 h1,
 h2,
 h3 {
@@ -210,32 +205,30 @@ text-align: center;
 /* Search Filter CSS */
 
 .search-filters form {
-  margin: 1em auto;
-  padding: 0 1em;
-}
-.search-filters{
-  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: center;
 }
 
-.search-filters input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
+.search-filters input[type="text"] {
   border: none;
+
 }
-.search-filters button{
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
+.search-filters button {
   background: #ddd;
-  font-size: 17px;
   border: none;
   cursor: pointer;
 }
-.search-filters .search-container button:hover {
+.search-filters .search-icon button:hover {
   background: #ccc;
 }
-
+.search-container{
+  display: flex;
+}
+.search-icon{
+  display: flex;
+}
 /* Button CSS */
 .actions{
   text-align: center;
@@ -316,16 +309,16 @@ text-align: center;
   height: 70px;
 }
 .navbar {
-  display: flex;
+  height: 60px;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
   width: 80%;
   margin: auto;
 }
-.container .navbar {
-  justify-content: space-between;
-}
+
 .navbar ul {
   display: flex;
 }
@@ -450,6 +443,7 @@ text-align: center;
   margin: 20px 0 0;
   text-align: center;
   cursor: pointer;
+  font-size: 17px;
 }
 .link-login:hover,
 .link-register:hover{

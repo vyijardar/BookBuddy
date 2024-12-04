@@ -1,4 +1,3 @@
-/* TODO - add your code to create a functional React component that renders a login form */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +15,7 @@ export default function Login({ setToken }) {
         } else if (!/\S+@\S+\.\S+/.test(email)) {
             error.email = "Invalid  email address";
         }
-        // Password validation
+    
         if (!password.trim()) {
             error.password = "Password is required.";
         } else if (password.length < 4) {
@@ -27,7 +26,7 @@ export default function Login({ setToken }) {
     }
     async function handleSubmit(event) {
         event.preventDefault();
-        // Run validation
+        
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
             setError(validationErrors);
@@ -47,15 +46,13 @@ export default function Login({ setToken }) {
             });
             const result = await response.json();
             if (result.token) {
-                setToken(result.token); // Store the token
+                setToken(result.token); 
                 localStorage.setItem('token', result.token);
                 alert("Logged in successfully");
                 navigate('/account')
             } else {
                 throw new Error("Failed to sign up, no token received");
             }
-            // setIsLoggedin(true);
-
         } catch (error) {
             setError(error.message);
         }

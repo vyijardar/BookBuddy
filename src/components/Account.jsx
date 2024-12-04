@@ -1,10 +1,8 @@
-/* TODO - add your code to create a functional React component that renders account details for a logged in user. Fetch the account data from the provided API. You may consider conditionally rendering a message for other users that prompts them to log in or create an account.  */
 import { useEffect, useState } from "react";
 
 export default function Account({ token }) {
     const [accountInfo, setAccountInfo] = useState({});
     const [checkedOutBooks, setCheckedOutBooks] = useState([]);
-
     useEffect(() => {
         if (!token) {
             console.error('No token found. Please log in.');
@@ -25,7 +23,7 @@ export default function Account({ token }) {
                 setAccountInfo(result);
 
             } catch (error) {
-                console.error('Failed to fetch account info:', error);
+                console.error('Failed to fetch account info.', error);
             }
         }
         async function fetchCheckOutBooks() {
@@ -42,7 +40,7 @@ export default function Account({ token }) {
                 setCheckedOutBooks(data.reservation);
 
             } catch (error) {
-                console.error("Error fetching checkout-books:", error);
+                console.error("Error fetching checkout-books.", error);
             }
         }
         fetchCheckOutBooks();
@@ -65,7 +63,7 @@ export default function Account({ token }) {
             }
             setCheckedOutBooks((prevBooks) => prevBooks.filter(book => book.id !== reservationId));
         } catch (error) {
-
+            console.error("Error returning books.", error);
         }
     }
     if (!token) {
@@ -76,7 +74,7 @@ export default function Account({ token }) {
             <div className='books-list'>
                 {accountInfo && (
                     <div className="account-info">
-                        <p><strong>Email Id:</strong> {accountInfo.email} </p>       
+                        <p><strong>Email Id:</strong> {accountInfo.email} </p>
                         <h1>Checked-Out Books</h1>
                     </div>
                 )}
@@ -95,7 +93,7 @@ export default function Account({ token }) {
 
                                         <p className="description">{reservation.description}</p>
                                         <div className='actions'>
-                                        <button className="btn" type="submit" onClick={() => handleReturn(reservation.id)} >Return Book</button>
+                                            <button className="btn" type="submit" onClick={() => handleReturn(reservation.id)} >Return Book</button>
                                         </div>
                                     </figcaption>
                                 </figure>

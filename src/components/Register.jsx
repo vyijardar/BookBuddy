@@ -1,4 +1,3 @@
-/* TODO - add your code to create a functional React component that renders a registration form */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +6,6 @@ export default function Register({ setToken }) {
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const [error, setError] = useState([]);
 
     const navigate = useNavigate()
@@ -36,7 +34,7 @@ export default function Register({ setToken }) {
     }
     async function handleSubmit(event) {
         event.preventDefault();
-        // Run validation
+        
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
             setError(validationErrors);
@@ -69,9 +67,8 @@ export default function Register({ setToken }) {
                 alert("Registered Successfully");
 
             } catch (error) {
-                setError(error.message)
+                setError(error.message);
             }
-
         }
         Registration();
     }
@@ -88,7 +85,6 @@ export default function Register({ setToken }) {
                             onChange={(event) => setFirstname(event.target.value)}
                             placeholder="First Name">
                         </input>
-
                         {error.firstname && <p className="error">{error.firstname}</p>}
 
                         <h3> Last Name :</h3>
@@ -98,7 +94,6 @@ export default function Register({ setToken }) {
                             onChange={(event) => setLastname(event.target.value)}
                             placeholder="Last Name">
                         </input>
-
                         {error.lastname && <p className="error">{error.lastname}</p>}
 
                         <h3>Email :</h3>
@@ -108,7 +103,6 @@ export default function Register({ setToken }) {
                             onChange={(event) => setEmail(event.target.value)}
                             placeholder="Email">
                         </input>
-
                         {error.email && <p className="error">{error.email}</p>}
 
                         <h3>Password :</h3>
@@ -118,6 +112,7 @@ export default function Register({ setToken }) {
                             onChange={(event) => setPassword(event.target.value)}
                             placeholder="Password">
                         </input>
+                        {error.password && <p className="error">{error.password}</p>}
                         <div className="actions">
                             <button className="btn" type="submit">Submit</button>
                         </div>
@@ -125,8 +120,6 @@ export default function Register({ setToken }) {
                             You already have an account? Login Here!
                         </div>
                     </div>
-                    {error.password && <p className="error">{error.password}</p>}
-
                 </form>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
